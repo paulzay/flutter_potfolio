@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'style.dart';
 void main() {
   runApp(App());
 }
@@ -9,6 +9,15 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Home(),
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(  
+          textTheme: TextTheme(headline6: AppBarTextStyle)
+        ),
+        textTheme: TextTheme(
+          headline6: TitleTextStyle,
+          bodyText2: Body1TextStyle,
+        )
+      ),
     );
   }
 }
@@ -17,17 +26,22 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Paul Ogolla'),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+      appBar: AppBar(
+        title: Text('Paul Ogolla'),
+        backgroundColor: Colors.black,
+      ),
+      body: Container(
+        height: 480.0,
+        child: ListView(
           children: [
             ImageBanner("assets/images/banner.jpg"),
-            TextSection('About Me', 'Software Developer')
+            TextSection('About Me', 'I am a Full-stack Software Engineer and I can help you build a feature, website or mobile app.'),
+            TextSection('Get in Touch', 'paul.zay@outlook.com'),
+            TextSection('Hire Me', 'I am looking for a new role'),
           ],
-        ));
+        )
+      )
+    );
   }
 }
 
@@ -45,11 +59,11 @@ class TextSection extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: Text(_title),
+          child: Text(_title, style: Theme.of(context).textTheme.headline6,),
         ),
         Container(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-          child: Text(_body),
+          child: Text(_body, style: Theme.of(context).textTheme.bodyText2,),
         )
       ],
     );
